@@ -18,23 +18,26 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    gap: 0;
+    padding: 4px 0;
   }
 
   .left {
     flex: 1 1 auto;
     min-width: 0;
     padding-right: 36px;
+    display: flex;
+    flex-direction: column;
   }
 
   .divider {
     width: 1px;
     background: #eeeeee;
     flex-shrink: 0;
+    align-self: stretch;
   }
 
   .right {
-    width: 280px;
+    width: 290px;
     flex-shrink: 0;
     padding-left: 28px;
   }
@@ -57,14 +60,39 @@
     font-size: 14px;
     color: #666666;
     line-height: 1.6;
-    margin: 0 0 24px 0;
+    margin: 0 0 22px 0;
   }
 
   /* SCROLL STRIP */
+  .strip-wrapper {
+    position: relative;
+    flex: 1;
+    margin-bottom: 22px;
+  }
+
+  /* top + bottom fade masks for seamless shadow blending */
+  .strip-wrapper::before,
+  .strip-wrapper::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .strip-wrapper::before {
+    top: 0;
+    background: linear-gradient(to bottom, #ffffff 0%, transparent 100%);
+  }
+  .strip-wrapper::after {
+    bottom: 0;
+    background: linear-gradient(to top, #ffffff 0%, transparent 100%);
+  }
+
   .strip-outer {
     overflow: hidden;
-    padding: 8px 0;
-    margin: -8px 0 20px 0;
+    padding: 12px 0;
   }
 
   .strip-track {
@@ -72,7 +100,7 @@
     flex-wrap: nowrap;
     gap: 14px;
     width: max-content;
-    animation: scrollCards 30s linear infinite;
+    animation: scrollCards 32s linear infinite;
   }
 
   @keyframes scrollCards {
@@ -80,35 +108,37 @@
     100% { transform: translateX(-50%); }
   }
 
+  /* NETFLIX-STYLE PORTRAIT CARDS */
   .card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-    padding: 24px 16px 20px;
+    justify-content: center;
+    gap: 16px;
+    padding: 28px 16px 24px;
     border-radius: 16px;
     background: #ffffff;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.09);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
     flex-shrink: 0;
-    width: 148px;
+    width: 150px;
     text-align: center;
     cursor: default;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
   }
 
   .card:hover {
-    box-shadow: 0 6px 24px rgba(0,0,0,0.14);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+    transform: translateY(-3px);
   }
 
   .avatar {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 76px;
-    height: 76px;
+    width: 84px;
+    height: 84px;
     border-radius: 50%;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 600;
     flex-shrink: 0;
   }
@@ -141,6 +171,7 @@
     cursor: pointer;
     font-family: 'Plus Jakarta Sans', Arial, sans-serif;
     transition: background 0.2s ease;
+    align-self: flex-start;
   }
 
   .cta:hover { background: #165552; }
@@ -195,6 +226,15 @@
     line-height: 1.5;
     margin: 0;
   }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    .outer { flex-direction: column; }
+    .divider { width: 100%; height: 1px; margin: 20px 0; }
+    .left { padding-right: 0; }
+    .right { width: 100%; padding-left: 0; padding-top: 0; }
+    h2 { font-size: 18px; white-space: normal; }
+  }
 </style>
 </head>
 <body>
@@ -206,31 +246,87 @@
     <h2>Learn from the people who <em>actually do the thing.</em></h2>
     <p class="sub">Your colleagues are sitting on a goldmine of real-world knowledge. This is where they share it.</p>
 
-    <div class="strip-outer">
-      <div class="strip-track">
+    <div class="strip-wrapper">
+      <div class="strip-outer">
+        <div class="strip-track">
 
-        <!-- SET 1 -->
-        <div class="card"><div class="avatar" style="background:#E1F5EE; color:#0F6E56; box-shadow:0 0 0 3px #9FE1CB;">SR</div><div><span class="card-name">Sarah R.</span><span class="card-role">Sales Ops</span></div></div>
-        <div class="card"><div class="avatar" style="background:#EEEDFE; color:#3C3489; box-shadow:0 0 0 3px #AFA9EC;">MT</div><div><span class="card-name">Marcus T.</span><span class="card-role">Product Design</span></div></div>
-        <div class="card"><div class="avatar" style="background:#FAEEDA; color:#633806; box-shadow:0 0 0 3px #FAC775;">AL</div><div><span class="card-name">Aisha L.</span><span class="card-role">Customer Success</span></div></div>
-        <div class="card"><div class="avatar" style="background:#FAECE7; color:#712B13; box-shadow:0 0 0 3px #F0997B;">DP</div><div><span class="card-name">David P.</span><span class="card-role">Engineering</span></div></div>
-        <div class="card"><div class="avatar" style="background:#E6F1FB; color:#0C447C; box-shadow:0 0 0 3px #85B7EB;">JK</div><div><span class="card-name">Jade K.</span><span class="card-role">Finance</span></div></div>
-        <div class="card"><div class="avatar" style="background:#EAF3DE; color:#27500A; box-shadow:0 0 0 3px #97C459;">RN</div><div><span class="card-name">Raj N.</span><span class="card-role">Legal</span></div></div>
-        <div class="card"><div class="avatar" style="background:#FBEAF0; color:#72243E; box-shadow:0 0 0 3px #ED93B1;">CM</div><div><span class="card-name">Chloe M.</span><span class="card-role">People &amp; Culture</span></div></div>
-        <div class="card"><div class="avatar" style="background:#E1F5EE; color:#085041; box-shadow:0 0 0 3px #5DCAA5;">TW</div><div><span class="card-name">Tom W.</span><span class="card-role">Revenue</span></div></div>
-        <div class="card"><div class="avatar" style="background:#FBEAF0; color:#72243E; box-shadow:0 0 0 3px #ED93B1;">NS</div><div><span class="card-name">Nina S.</span><span class="card-role">Marketing</span></div></div>
+          <!-- SET 1 -->
+          <div class="card">
+            <div class="avatar" style="background:#E1F5EE; color:#0F6E56; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #9FE1CB;">SR</div>
+            <div><span class="card-name">Sarah R.</span><span class="card-role">Sales Ops</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#EEEDFE; color:#3C3489; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #AFA9EC;">MT</div>
+            <div><span class="card-name">Marcus T.</span><span class="card-role">Product Design</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#FAEEDA; color:#633806; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #FAC775;">AL</div>
+            <div><span class="card-name">Aisha L.</span><span class="card-role">Customer Success</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#FAECE7; color:#712B13; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #F0997B;">DP</div>
+            <div><span class="card-name">David P.</span><span class="card-role">Engineering</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#E6F1FB; color:#0C447C; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #85B7EB;">JK</div>
+            <div><span class="card-name">Jade K.</span><span class="card-role">Finance</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#EAF3DE; color:#27500A; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #97C459;">RN</div>
+            <div><span class="card-name">Raj N.</span><span class="card-role">Legal</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#FBEAF0; color:#72243E; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #ED93B1;">CM</div>
+            <div><span class="card-name">Chloe M.</span><span class="card-role">People &amp; Culture</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#E1F5EE; color:#085041; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #5DCAA5;">TW</div>
+            <div><span class="card-name">Tom W.</span><span class="card-role">Revenue</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#FBEAF0; color:#72243E; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #ED93B1;">NS</div>
+            <div><span class="card-name">Nina S.</span><span class="card-role">Marketing</span></div>
+          </div>
 
-        <!-- SET 2 — exact duplicate for seamless loop -->
-        <div class="card"><div class="avatar" style="background:#E1F5EE; color:#0F6E56; box-shadow:0 0 0 3px #9FE1CB;">SR</div><div><span class="card-name">Sarah R.</span><span class="card-role">Sales Ops</span></div></div>
-        <div class="card"><div class="avatar" style="background:#EEEDFE; color:#3C3489; box-shadow:0 0 0 3px #AFA9EC;">MT</div><div><span class="card-name">Marcus T.</span><span class="card-role">Product Design</span></div></div>
-        <div class="card"><div class="avatar" style="background:#FAEEDA; color:#633806; box-shadow:0 0 0 3px #FAC775;">AL</div><div><span class="card-name">Aisha L.</span><span class="card-role">Customer Success</span></div></div>
-        <div class="card"><div class="avatar" style="background:#FAECE7; color:#712B13; box-shadow:0 0 0 3px #F0997B;">DP</div><div><span class="card-name">David P.</span><span class="card-role">Engineering</span></div></div>
-        <div class="card"><div class="avatar" style="background:#E6F1FB; color:#0C447C; box-shadow:0 0 0 3px #85B7EB;">JK</div><div><span class="card-name">Jade K.</span><span class="card-role">Finance</span></div></div>
-        <div class="card"><div class="avatar" style="background:#EAF3DE; color:#27500A; box-shadow:0 0 0 3px #97C459;">RN</div><div><span class="card-name">Raj N.</span><span class="card-role">Legal</span></div></div>
-        <div class="card"><div class="avatar" style="background:#FBEAF0; color:#72243E; box-shadow:0 0 0 3px #ED93B1;">CM</div><div><span class="card-name">Chloe M.</span><span class="card-role">People &amp; Culture</span></div></div>
-        <div class="card"><div class="avatar" style="background:#E1F5EE; color:#085041; box-shadow:0 0 0 3px #5DCAA5;">TW</div><div><span class="card-name">Tom W.</span><span class="card-role">Revenue</span></div></div>
-        <div class="card"><div class="avatar" style="background:#FBEAF0; color:#72243E; box-shadow:0 0 0 3px #ED93B1;">NS</div><div><span class="card-name">Nina S.</span><span class="card-role">Marketing</span></div></div>
+          <!-- SET 2 — exact duplicate for seamless loop -->
+          <div class="card">
+            <div class="avatar" style="background:#E1F5EE; color:#0F6E56; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #9FE1CB;">SR</div>
+            <div><span class="card-name">Sarah R.</span><span class="card-role">Sales Ops</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#EEEDFE; color:#3C3489; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #AFA9EC;">MT</div>
+            <div><span class="card-name">Marcus T.</span><span class="card-role">Product Design</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#FAEEDA; color:#633806; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #FAC775;">AL</div>
+            <div><span class="card-name">Aisha L.</span><span class="card-role">Customer Success</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#FAECE7; color:#712B13; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #F0997B;">DP</div>
+            <div><span class="card-name">David P.</span><span class="card-role">Engineering</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#E6F1FB; color:#0C447C; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #85B7EB;">JK</div>
+            <div><span class="card-name">Jade K.</span><span class="card-role">Finance</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#EAF3DE; color:#27500A; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #97C459;">RN</div>
+            <div><span class="card-name">Raj N.</span><span class="card-role">Legal</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#FBEAF0; color:#72243E; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #ED93B1;">CM</div>
+            <div><span class="card-name">Chloe M.</span><span class="card-role">People &amp; Culture</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#E1F5EE; color:#085041; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #5DCAA5;">TW</div>
+            <div><span class="card-name">Tom W.</span><span class="card-role">Revenue</span></div>
+          </div>
+          <div class="card">
+            <div class="avatar" style="background:#FBEAF0; color:#72243E; box-shadow:0 0 0 3px #ffffff, 0 0 0 5px #ED93B1;">NS</div>
+            <div><span class="card-name">Nina S.</span><span class="card-role">Marketing</span></div>
+          </div>
 
+        </div>
       </div>
     </div>
 
