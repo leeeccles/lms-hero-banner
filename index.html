@@ -17,27 +17,23 @@
     display: grid;
     grid-template-columns: 1fr 1px 260px;
     width: 100%;
-    min-height: 100vh;
-    padding: 4px 0 8px;
-    gap: 0;
+    padding: 4px 0 12px;
+    align-items: start;
   }
 
-  /* LEFT */
   .left {
     padding-right: 32px;
     display: flex;
     flex-direction: column;
-    min-width: 0;
   }
 
   h2 {
-    font-size: clamp(16px, 2.2vw, 22px);
+    font-size: clamp(15px, 2vw, 22px);
     font-weight: 600;
     color: #1a1a1a;
     line-height: 1.3;
     margin: 0 0 8px 0;
     white-space: normal;
-    word-wrap: break-word;
   }
 
   h2 em {
@@ -46,17 +42,15 @@
   }
 
   .sub {
-    font-size: clamp(12px, 1.3vw, 14px);
+    font-size: clamp(12px, 1.2vw, 14px);
     color: #666;
     line-height: 1.6;
     margin: 0 0 20px 0;
   }
 
-  /* CARD STRIP */
   .strip-wrapper {
     position: relative;
-    flex: 1;
-    min-height: 0;
+    height: 180px;
     margin-bottom: 20px;
   }
 
@@ -71,15 +65,16 @@
   }
   .strip-wrapper::before {
     top: 0;
-    background: linear-gradient(to bottom, #fff 0%, transparent 100%);
+    background: linear-gradient(to bottom, #fff, transparent);
   }
   .strip-wrapper::after {
     bottom: 0;
-    background: linear-gradient(to top, #fff 0%, transparent 100%);
+    background: linear-gradient(to top, #fff, transparent);
   }
 
   .strip-outer {
     overflow: hidden;
+    height: 100%;
     padding: 10px 0;
   }
 
@@ -101,13 +96,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 14px;
-    padding: 22px 14px 18px;
+    gap: 12px;
+    padding: 20px 14px 16px;
     border-radius: 16px;
     background: #ffffff;
-    box-shadow: 0 3px 18px rgba(0,0,0,0.09);
+    box-shadow: 0 3px 16px rgba(0,0,0,0.09);
     flex-shrink: 0;
-    width: 136px;
+    width: 132px;
     text-align: center;
     transition: box-shadow 0.25s, transform 0.25s;
     cursor: default;
@@ -119,13 +114,13 @@
   }
 
   .avatar {
-    width: 80px;
-    height: 80px;
+    width: 76px;
+    height: 76px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     flex-shrink: 0;
   }
@@ -146,7 +141,6 @@
     letter-spacing: 0.02em;
   }
 
-  /* CTA */
   .cta {
     background: #1D6E6A;
     color: #E1F5EE;
@@ -163,17 +157,13 @@
   }
   .cta:hover { background: #155450; }
 
-  /* DIVIDER */
   .divider {
     background: #eeeeee;
-    width: 1px;
+    align-self: stretch;
   }
 
-  /* RIGHT */
   .right {
     padding-left: 24px;
-    display: flex;
-    flex-direction: column;
   }
 
   .section-label {
@@ -183,13 +173,13 @@
     text-transform: uppercase;
     color: #1D9E75;
     margin-bottom: 10px;
+    display: block;
   }
 
   .benefits {
     display: flex;
     flex-direction: column;
     gap: 7px;
-    flex: 1;
   }
 
   .benefit {
@@ -199,7 +189,6 @@
     background: #f9f9f9;
     border-radius: 10px;
     padding: 12px;
-    flex: 1;
   }
 
   .benefit-icon {
@@ -233,7 +222,6 @@
 <body>
 <div class="outer">
 
-  <!-- LEFT -->
   <div class="left">
     <h2>Learn from the people who <em>actually do the thing.</em></h2>
     <p class="sub">Your colleagues are sitting on a goldmine of real-world knowledge. This is where they share it.</p>
@@ -241,8 +229,6 @@
     <div class="strip-wrapper">
       <div class="strip-outer">
         <div class="strip-track">
-
-          <!-- SET 1 -->
           <div class="card"><div class="avatar" style="background:#E1F5EE;color:#0F6E56;box-shadow:0 0 0 3px #fff,0 0 0 5px #9FE1CB;">SR</div><div><span class="card-name">Sarah R.</span><span class="card-role">Sales Ops</span></div></div>
           <div class="card"><div class="avatar" style="background:#EEEDFE;color:#3C3489;box-shadow:0 0 0 3px #fff,0 0 0 5px #AFA9EC;">MT</div><div><span class="card-name">Marcus T.</span><span class="card-role">Product Design</span></div></div>
           <div class="card"><div class="avatar" style="background:#FAEEDA;color:#633806;box-shadow:0 0 0 3px #fff,0 0 0 5px #FAC775;">AL</div><div><span class="card-name">Aisha L.</span><span class="card-role">Customer Success</span></div></div>
@@ -252,8 +238,7 @@
           <div class="card"><div class="avatar" style="background:#FBEAF0;color:#72243E;box-shadow:0 0 0 3px #fff,0 0 0 5px #ED93B1;">CM</div><div><span class="card-name">Chloe M.</span><span class="card-role">People &amp; Culture</span></div></div>
           <div class="card"><div class="avatar" style="background:#E1F5EE;color:#085041;box-shadow:0 0 0 3px #fff,0 0 0 5px #5DCAA5;">TW</div><div><span class="card-name">Tom W.</span><span class="card-role">Revenue</span></div></div>
           <div class="card"><div class="avatar" style="background:#FBEAF0;color:#72243E;box-shadow:0 0 0 3px #fff,0 0 0 5px #ED93B1;">NS</div><div><span class="card-name">Nina S.</span><span class="card-role">Marketing</span></div></div>
-
-          <!-- SET 2 — duplicate for loop -->
+          <!-- duplicate set -->
           <div class="card"><div class="avatar" style="background:#E1F5EE;color:#0F6E56;box-shadow:0 0 0 3px #fff,0 0 0 5px #9FE1CB;">SR</div><div><span class="card-name">Sarah R.</span><span class="card-role">Sales Ops</span></div></div>
           <div class="card"><div class="avatar" style="background:#EEEDFE;color:#3C3489;box-shadow:0 0 0 3px #fff,0 0 0 5px #AFA9EC;">MT</div><div><span class="card-name">Marcus T.</span><span class="card-role">Product Design</span></div></div>
           <div class="card"><div class="avatar" style="background:#FAEEDA;color:#633806;box-shadow:0 0 0 3px #fff,0 0 0 5px #FAC775;">AL</div><div><span class="card-name">Aisha L.</span><span class="card-role">Customer Success</span></div></div>
@@ -263,7 +248,6 @@
           <div class="card"><div class="avatar" style="background:#FBEAF0;color:#72243E;box-shadow:0 0 0 3px #fff,0 0 0 5px #ED93B1;">CM</div><div><span class="card-name">Chloe M.</span><span class="card-role">People &amp; Culture</span></div></div>
           <div class="card"><div class="avatar" style="background:#E1F5EE;color:#085041;box-shadow:0 0 0 3px #fff,0 0 0 5px #5DCAA5;">TW</div><div><span class="card-name">Tom W.</span><span class="card-role">Revenue</span></div></div>
           <div class="card"><div class="avatar" style="background:#FBEAF0;color:#72243E;box-shadow:0 0 0 3px #fff,0 0 0 5px #ED93B1;">NS</div><div><span class="card-name">Nina S.</span><span class="card-role">Marketing</span></div></div>
-
         </div>
       </div>
     </div>
@@ -273,51 +257,28 @@
 
   <div class="divider"></div>
 
-  <!-- RIGHT -->
   <div class="right">
-    <p class="section-label">Here's what's inside</p>
+    <span class="section-label">Here's what's inside</span>
     <div class="benefits">
-
       <div class="benefit">
-        <div class="benefit-icon" style="background:#E1F5EE;">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#1D9E75" stroke-width="1.2"/><path d="M4.5 7.5l2 1.5 3-3" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
+        <div class="benefit-icon" style="background:#E1F5EE;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#1D9E75" stroke-width="1.2"/><path d="M4.5 7.5l2 1.5 3-3" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="benefit-text"><p class="benefit-title">Get unstuck in minutes, not days</p><p class="benefit-desc">Search by topic or ask the AI companion — instant answers from people who've actually done it.</p></div>
       </div>
-
       <div class="benefit">
-        <div class="benefit-icon" style="background:#EEEDFE;">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5l1.3 3.5h3.5l-3 2.2 1.2 3.5L7 8.8l-3 1.9 1.2-3.5-3-2.2H5.7z" stroke="#534AB7" stroke-width="1.1" stroke-linejoin="round"/></svg>
-        </div>
+        <div class="benefit-icon" style="background:#EEEDFE;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5l1.3 3.5h3.5l-3 2.2 1.2 3.5L7 8.8l-3 1.9 1.2-3.5-3-2.2H5.7z" stroke="#534AB7" stroke-width="1.1" stroke-linejoin="round"/></svg></div>
         <div class="benefit-text"><p class="benefit-title">Sharpen skills for now and what's next</p><p class="benefit-desc">Learn what helps you do your best work today — and sets you up for what's next.</p></div>
       </div>
-
       <div class="benefit">
-        <div class="benefit-icon" style="background:#FAEEDA;">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 11c0-2.2 2.2-3.5 5-3.5s5 1.3 5 3.5" stroke="#BA7517" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="4.5" r="2" stroke="#BA7517" stroke-width="1.2"/></svg>
-        </div>
+        <div class="benefit-icon" style="background:#FAEEDA;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 11c0-2.2 2.2-3.5 5-3.5s5 1.3 5 3.5" stroke="#BA7517" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="4.5" r="2" stroke="#BA7517" stroke-width="1.2"/></svg></div>
         <div class="benefit-text"><p class="benefit-title">Learn the unwritten rules</p><p class="benefit-desc">The real how-things-work-here knowledge that a doc couldn't capture.</p></div>
       </div>
-
       <div class="benefit">
-        <div class="benefit-icon" style="background:#FAECE7;">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="#D85A30" stroke-width="1.3" stroke-linecap="round"/></svg>
-        </div>
+        <div class="benefit-icon" style="background:#FAECE7;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="#D85A30" stroke-width="1.3" stroke-linecap="round"/></svg></div>
         <div class="benefit-text"><p class="benefit-title">Your expertise matters too</p><p class="benefit-desc">Have a best practice to share? Join the Ambassador Programme.</p></div>
       </div>
-
     </div>
   </div>
 
 </div>
-
-<script>
-  // Tells the parent page the exact height needed — no fixed height guessing
-  function sendHeight() {
-    window.parent.postMessage({ iframeHeight: document.body.scrollHeight }, '*');
-  }
-  window.addEventListener('load', sendHeight);
-  window.addEventListener('resize', sendHeight);
-</script>
 </body>
 </html>
